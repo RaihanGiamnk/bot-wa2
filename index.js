@@ -3,27 +3,44 @@ const qrcode = require('qrcode-terminal');
 const AIService = require('./src/ai');
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 class WhatsAppBot {
     constructor() {
+        // Puppeteer configuration optimized for cloud hosting
+        const puppeteerConfig = {
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process',
+                '--disable-gpu',
+                '--disable-background-timer-throttling',
+                '--disable-backgrounding-occluded-windows',
+                '--disable-renderer-backgrounding',
+                '--disable-features=TranslateUI',
+                '--disable-ipc-flooding-protection',
+                '--disable-web-security',
+                '--disable-features=VizDisplayCompositor'
+            ]
+        };
+
+        // Add executable path for Railway/Heroku if needed
+        if (process.env.RAILWAY_ENVIRONMENT || process.env.DYNO) {
+            puppeteerConfig.executablePath = '/usr/bin/google-chrome-stable';
+        }
+
         this.client = new Client({
             authStrategy: new LocalAuth({
-                clientId: "whatsapp-ai-bot"
+                clientId: "whatsapp-ai-bot",
+                dataPath: path.join(__dirname, '.wwebjs_auth')
             }),
-            puppeteer: {
-                headless: true,
-                args: [
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox',
-                    '--disable-dev-shm-usage',
-                    '--disable-accelerated-2d-canvas',
-                    '--no-first-run',
-                    '--no-zygote',
-                    '--single-process',
-                    '--disable-gpu'
-                ]
-            }
+            puppeteer: puppeteerConfig
         });
 
         try {

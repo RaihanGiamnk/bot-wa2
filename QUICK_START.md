@@ -28,6 +28,14 @@ Panduan cepat untuk menjalankan bot WhatsApp AI 24/7 dalam 5 menit.
 
 **URL Bot:** `https://your-app-name.up.railway.app`
 
+### **Troubleshooting Railway:**
+Jika deployment gagal, lihat **[Railway Troubleshooting Guide](RAILWAY_TROUBLESHOOTING.md)**
+
+**Common fixes:**
+- Reset build cache di Railway dashboard
+- Pastikan environment variables sudah diset
+- Check logs untuk error Puppeteer/Chromium
+
 ---
 
 ## 🐳 Metode 2: Docker (VPS/Local)

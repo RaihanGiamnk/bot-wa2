@@ -91,6 +91,7 @@ docker run -d -p 3000:3000 --env-file .env whatsapp-bot
 
 🔗 **[Panduan lengkap deployment](DEPLOYMENT.md)**
 ⚡ **[Quick Start - Deploy dalam 5 menit](QUICK_START.md)**
+🚂 **[Railway Troubleshooting](RAILWAY_TROUBLESHOOTING.md)**
 
 ## 📋 Persyaratan
 
